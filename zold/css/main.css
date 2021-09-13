@@ -1,0 +1,145 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body{
+    background-color: #666666;
+    color: ivory;
+    font-family: sans-serif;
+}
+.auto-margin{
+  margin: 20px auto;
+}
+.title{
+    margin: 20px auto;
+    font-size: 25px;
+    width: 400px;
+    font-family: sans-serif;
+}
+.play-area{
+  
+  margin: 20px auto;
+  width: 800px;
+  height: 600px;
+  background-color: beige;
+  border-radius:10px;
+  color: darkslategray;
+}
+
+.area{
+  width:350px;
+  height: 400px;
+  text-align: center;
+  margin: auto;
+}
+.fighter-area{
+  float:left;
+}
+.enemy-area{
+  float:right;
+}
+
+.btn{
+  width: 150px;
+  background-color: darkslateblue;
+  text-align: center;
+}
+
+.play-inventory{
+  
+  margin: auto;
+  top: 470px;
+  width: 600px;
+  height: 100px;
+  background-color: ivory;
+  border-radius: 10px;
+  overflow-x: scroll;
+overflow-y: hidden;
+white-space: nowrap;
+}
+
+.play-ui{
+  
+  top: 570px;
+  margin: 20px auto;
+  width: 600px;
+  height: 50px;
+  background-color: rosybrown;
+  padding:15px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:20px;
+  border-radius: 10px;
+}
+
+.play-unit{
+  position: relative;
+  top:0px;
+  left: 0px;
+  width:25px;
+  height: 25px;
+  background-color: salmon;
+  border-radius: 5px;
+  transition: all 1s;
+}
+
+.play-unit-take-damge{
+  width:40px;
+  height:40px;
+  background-color:red !important;
+}
+
+.play-unit-inventory-item{
+  position: relative;
+  width: 54px;
+  height: 54px;
+  margin: 10px 10px 0px 10px;
+  display: inline-block;
+vertical-align: top;
+}
+
+.damage-1-ui{
+  position: absolute;
+  transition: all .75s;
+  opacity: 1;
+  display:inline;
+}
+
+.damage-1-ui-fade{
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+@media only screen and (max-width: 700px) {
+  .play-area{
+      margin: 20px auto;
+      width: 300px;
+      height: 400px;
+      background-color: beige;
+      border-radius:10px;
+      color: darkslategray;
+  }
+  
+  .play-inventory{
+      margin: auto;
+      width: 300px;
+      height: 100px;
+      background-color: ivory;
+      border-radius: 10px;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      white-space: nowrap;
+  }
+  
+  .play-ui{
+      margin: 20px auto;
+      width: 300px;
+      height: 50px;
+      background-color: rosybrown;
+      padding:15px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:20px;
+      border-radius: 10px;
+  }
+}

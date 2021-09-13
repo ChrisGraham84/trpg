@@ -1,16 +1,201 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Simple Turn Battle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <style>
+        body{
+            background-color: antiquewhite;
+        }
+        /*div {
+            border: 1px dashed;
+        }*/
+        .wrapper {
+            background-color: darkslategrey;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 800px;
+            gap: 20px;
+            position: relative;
+        }
+        .heroblock{
+            height: 25%; 
+            padding: 15px;
+            transition: all .5s;
+        }
+        .heroblock img{
+            height: 100px;
+        } 
+        .heroblock:nth-child(even){
+            background-color:grey;
+        }
+        .heroblock:nth-child(odd){
+            background-color:dimgrey;
+        }
+        .box4{
+            margin: 0px auto;
+            width: 50%;
+            background-color:dimgrey;
+        }
+        .ded{
+            opacity: 0.25;
+        }
+
+        .hr-take-damage{
+            opacity: .5;
+            transform: translateX(-5px);
+        }
+        .take-damage{
+            opacity: .5;
+            transform: translateX(5px);
+        }
+
+        .hr-give-damage{
+            transform: translateX(20px);
+        }
+        .give-damage{
+            transform: translateX(-15px);
+        }
+
+       
+    </style>
 </head>
 <body>
-    <div class="title">Generate Fighter and Battle</div>
+    <!--<div class="title">Generate Fighter and Battle</div>
     <div id="game"></div>
 
-    <script src="js/index.js"></script>
+    <script src="js/index.js"></script>-->
+    <div class="wrapper">
+        <div class="box1">
+            <div class="heroblock" id="h1">
+               <!-- Hero 2
+                <br />
+                <progress id="file" value="100" max="100"> 32% </progress>-->
+            </div>
+            <div class="heroblock">Hero 3</div>
+            <div class="heroblock">Hero 1</div>
+            <div class="heroblock">Hero 4</div>
+        </div>
+        <div class="box2">
+            <div class="heroblock">Monster 2</div>
+            <div class="heroblock">Monster 3</div>
+            <div class="heroblock">Monster 1</div>
+            <div class="heroblock">Monster 4</div>
+        </div>
+        <div class="box3">
+            <div class="heroblock" id="en1"></div>
+            <div class="heroblock">Monster 6</div>
+            <div class="heroblock">Monster 7</div>
+            <div class="heroblock">Monster 8</div>
+        </div>
+        <div class="box4">Four</div>
+    </div> 
+
+    <script>
+
+         //hero
+         var hero1 = {
+            el:   document.getElementById('h1'),
+            unit: {
+                name: "Patch",
+                hp: 20,
+                mp: 10,
+                atk: 5,
+                def: 5,
+                agi: 5,
+                mag: 5
+            }
+        }
+        //hero1.el.children.namedItem("file").max = hero1.unit.hp;
+        
+        //hero image
+        heroimg = document.createElement('img');
+        heroimg.src = "img/porkchop_patch.png";
+        heroimg.alt = "Porkchop Patch";
+        hero1.el.appendChild(heroimg);
+
+        hero1.el.appendChild(document.createElement("br"));
+
+        //hero life bar
+        herohp = document.createElement('progress');
+        herohp.max = hero1.unit.hp;
+        herohp.value = hero1.unit.hp;
+        herohp.id = hero1.unit.name +"HP";
+        hero1.el.appendChild(herohp);
+
+
+        //enemy
+        var enemy1 = {
+            el:  document.getElementById('en1'),
+            unit: {
+                name: "WizDog",
+                hp: 100,
+                mp: 10,
+                atk: 5,
+                def: 5,
+                agi: 5,
+                mag: 5
+            }
+        }
+
+        //enemy image
+        enemyimg = document.createElement('img');
+        enemyimg.src = "img/coolwizarddog.png";
+        enemyimg.alt = "Wiz Dog";
+        enemy1.el.appendChild(enemyimg);
+
+        enemy1.el.appendChild(document.createElement("br"));
+
+        //hero life bar
+        enemyhp = document.createElement('progress');
+        enemyhp.max = enemy1.unit.hp;
+        enemyhp.value = enemy1.unit.hp;
+        enemyhp.id = enemy1.unit.name +"HP";
+        enemy1.el.appendChild(enemyhp);
+
+
+        function draw() {
+            hero1.el.children.namedItem(hero1.unit.name +"HP").value = hero1.unit.hp;
+            enemy1.el.children.namedItem(enemy1.unit.name +"HP").value = enemy1.unit.hp;
+        }
+        //var h1 = document.getElementById('h1');
+        //var p = document.getElementById('file');
+        //p.addEventListener('click',() => { p.value -= 25; alert(h1.children[1])})
+        hero1.el.addEventListener('click', () => {
+            if(enemy1.unit.hp > 0 && hero1.unit.hp >0){
+            enemy1.unit.hp -= 5;
+
+            hero1.el.children[0].classList.add('hr-give-damage');
+            setTimeout(() => hero1.el.children[0].classList.remove('hr-give-damage'), 300);
+
+            enemy1.el.children[0].classList.add('take-damage');
+            setTimeout(() => enemy1.el.children[0].classList.remove('take-damage'), 500);
+            }
+            if(enemy1.unit.hp <= 0){
+                enemy1.el.children[0].classList.add("ded");
+            }
+            draw()
+        })
+
+        enemy1.el.addEventListener('click', () => {
+            if(hero1.unit.hp > 0 && enemy1.unit.hp > 0){
+            hero1.unit.hp -= 5;
+
+            enemy1.el.children[0].classList.add('give-damage');
+            setTimeout(() => enemy1.el.children[0].classList.remove('give-damage'), 300);
+
+            hero1.el.children[0].classList.add('hr-take-damage');
+            setTimeout(() => hero1.el.children[0].classList.remove('hr-take-damage'), 500);
+            }
+            if(hero1.unit.hp <= 0){
+                hero1.el.children[0].classList.add("ded");
+            }
+            draw()
+        })
+        draw();
+        </script>
 </body>
 </html>
