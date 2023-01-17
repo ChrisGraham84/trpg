@@ -52,7 +52,7 @@
             transform: translateX(-5px);
         }
         .take-damage{
-            opacity: .5;
+            opacity: .0;
             transform: translateX(5px);
         }
 
@@ -223,7 +223,7 @@
                 setTimeout(() => attacker.el.children[0].classList.remove(attackClass), 300);
 
                 target.el.children[0].classList.add(targetClass);
-                setTimeout(() => target.el.children[0].classList.remove(targetClass), 500);
+                setTimeout(() => target.el.children[0].classList.remove(targetClass), 200);
             }
             if(target.props.hp <= 0){
                 target.el.children[0].classList.add("ded");
