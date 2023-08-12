@@ -8,4 +8,65 @@ body{
     background-color: #666666;
     color: ivory;
     font-family: sans-serif;
+    background-color: antiquewhite;
+}
+
+/*div {
+  border: 1px dashed;
+}*/
+.wrapper {
+  background-color: darkslategrey;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 800px;
+  gap: 20px;
+  position: relative;
+}
+.heroblock{
+  height: 25%; 
+  padding: 15px;
+  transition: all .5s;
+}
+.enemyblock{
+  height: 25%; 
+  padding: 15px;
+  transition: all .5s;
+}
+.centerblock{
+  height: 25%; 
+  padding: 15px;
+}
+.heroblock img, .enemyblock img{
+  height: 100px;
+} 
+.box4{
+  margin: 0px auto;
+  width: 50%;
+  background-color:dimgrey;
+}
+.ded{
+  opacity: 0.25;
+}
+
+.hr-take-damage{
+  opacity: .5;
+  transform: translateX(-5px);
+}
+.take-damage{
+  opacity: .0;
+  transform: translateX(5px);
+}
+
+.hr-give-damage{
+  transform: translateX(20px);
+}
+.give-damage{
+  transform: translateX(-15px);
+}
+.selectedUnit img{
+  border: 1px greenyellow solid ;
+}
+
+.targetedUnit img{
+  border: 1px rgb(161, 0, 0) solid ;
 }
