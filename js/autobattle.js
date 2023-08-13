@@ -169,6 +169,7 @@ function createUnit(elName, isenemy){
             agi: 5,
             mag: 5
         }
+        //create load function to pass in state overide after unit is created.
     }
 
     unitimg = document.createElement('img');
