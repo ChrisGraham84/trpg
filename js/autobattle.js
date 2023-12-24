@@ -8,7 +8,7 @@ instruction.style.fontWeight = "bold";
 instruction.innerHTML = "left-click = attacker select <----------------> right-click = target select";
 
 
-const timeIndicator = document.createElement("div");
+const timeIndicator = document.createElement("progress");
 timeIndicator.style.color = "red"
 
 
@@ -71,7 +71,7 @@ var paused = false;
        function globalTineStart(){
         if(paused == false){
             var t = new Date()
-            var countDownDate = t.setSeconds(t.getSeconds() + 4);
+            var countDownDate = t.setSeconds(t.getSeconds() + 5);
             var x = setInterval(()=>{
             var now = new Date().getTime();
             var remainingTime = countDownDate - now;
@@ -80,19 +80,21 @@ var paused = false;
             var days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
             var hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+            var seconds = Math.floor((remainingTime % (1000 * 60 * 60)) / 1000);
         
-            timeIndicator.innerHTML = `COUNTDOWN: ${seconds}s`
-            timeIndicator.style.color = "red";
+            ///timeIndicator.innerHTML = `COUNTDOWN: ${seconds}s`
+            //timeIndicator.style.color = "red";
+            timeIndicator.max = 4;
+            timeIndicator.value = seconds;
         
                 if(remainingTime < 0){
                     clearInterval(x);
-                    timeIndicator.innerHTML = "ACTION";
-                    timeIndicator.style.color = "green";
+                    //timeIndicator.innerHTML = "ACTION";
+                    //timeIndicator.style.color = "green";
                     var heros = units.filter(x=> x.isenemy == false);
                     var enemies = units.filter(y=>y.isenemy == true);
                     
-                    /*var h = 0;
+                    var h = 0;
                     function loop(){
                         setTimeout(() => {
                             attack(heros[h], targetedunit)
@@ -102,14 +104,14 @@ var paused = false;
                             }
                         }, 500)
                     }
-                    loop();*/
+                    loop();
 
-                    attack(selectedunit,targetedunit)
+                    //attack(selectedunit,targetedunit)
 
                     globalTineStart();
                 }
         
-            },1000);
+            },10);
         }    
 
        }
@@ -162,7 +164,7 @@ function createUnit(elName, isenemy){
         isenemy: isenemy,
         props: {
             name: getRandomName(),
-            hp: isenemy ? 100 : 10,
+            hp: isenemy ? 25 : 10,
             mp: 10,
             atk: 5,
             def: 5,
